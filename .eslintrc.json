@@ -1,0 +1,27 @@
+{
+    "extends": "eslint-config-airbnb",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": 2,
+        
+        "linebreak-style": "off",
+        "quotes": [2, "double", "avoid-escape"],
+        "prefer-const": 1,
+        "complexity": [1, 5],
+        "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
+        "no-underscore-dangle": "off",
+        "comma-dangle": "off",
+        "arrow-body-style": [0, { "requireReturnForObjectLiteral": true }]
+    }
+}

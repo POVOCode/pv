@@ -1,0 +1,9 @@
+slnx.sqlite
+VSWorkspaceState.json
+node_modules
+*.log
+logs/*
+!logs/.keep
+env/*
+.suo
+.vscode/.ropeproject/objectdb
