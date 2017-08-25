@@ -1,4 +1,5 @@
 const Dotenv = require("dotenv");
+const Morgan = require("morgan");
 
 if (process.env.NODE_ENV === "development") {
   Dotenv.config({ path: `${__dirname}/env/development` });
@@ -10,6 +11,17 @@ const ExpressSession = require("express-session");
 const RedisStore = require("connect-redis")(ExpressSession);
 
 const apiServer = require("express")();
+
+apiServer.use(Morgan((tokens, req, res) => {
+  return [
+    `${Date.now()} - web: `,
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, "content-length"), "-",
+    tokens["response-time"](req, res), "ms",
+  ].join(" ");
+}));
 
 apiServer.use(require("cookie-parser")());
 apiServer.use(require("body-parser").urlencoded({ extended: false }));

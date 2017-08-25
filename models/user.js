@@ -1,7 +1,7 @@
 const SQDB = require("../lib/sql_connection");
 const DataTypes = require("sequelize/lib/data-types");
 
-const User = SQDB.define("user", {
+const User = SQDB.define("User", {
   id: {
     type: DataTypes.INTEGER,
     unique: true,
@@ -40,6 +40,16 @@ const User = SQDB.define("user", {
       notEmpty: true,
     },
   },
+
+  admin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: SQDB.literal("FALSE"),
+
+    validate: {
+      notEmpty: true,
+    },
+  }
 });
 
 module.exports = User;

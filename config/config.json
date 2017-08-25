@@ -2,21 +2,21 @@
   "development": {
     "username": "pv",
     "password": "password",
-    "database": "pv-dev",
-    "host": "127.0.0.1",
+    "database": "pv_dev",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "pv",
     "password": "password",
-    "database": "pv-test",
+    "database": "pv_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "pv",
     "password": "password",
-    "database": "pv-production",
+    "database": "pv_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
