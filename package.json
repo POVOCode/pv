@@ -23,6 +23,7 @@
     "influx": "next",
     "ip": "^1.1.5",
     "javascript-obfuscator": "^0.9.4",
+    "mailchimp-v3-api": "^1.0.0",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",

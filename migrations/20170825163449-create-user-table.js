@@ -2,38 +2,10 @@ module.exports = {
   up(queryInterface, Sequelize) {
     return queryInterface.createTable("Users", {
       id: {
-        allowNull: false,
+        type: Sequelize.INTEGER,
+        unique: true,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-
-      username: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false,
-      },
-
-      email: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false,
-      },
-
-      password: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-      },
-
-      passwordSalt: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-      },
-
-      admin: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: Sequelize.literal("FALSE"),
-        allowNull: false,
       },
 
       createdAt: {
@@ -46,6 +18,72 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("NOW()"),
+      },
+
+      username: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      password: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      passwordSalt: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      admin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: Sequelize.literal("FALSE"),
+
+        validate: {
+          notEmpty: true,
+        },
+      },
+
+      postcode: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      interests: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      inMailingList: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: Sequelize.literal("FALSE"),
       },
     });
   },
