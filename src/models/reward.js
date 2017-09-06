@@ -1,7 +1,7 @@
-const SQDB = require("../lib/sql_connection");
-const DataTypes = require("sequelize/lib/data-types");
+import DataTypes from "sequelize/lib/data-types";
+import SQDB from "../sql_connection";
 
-const Poll = SQDB.define("poll", {
+const Reward = SQDB.define("reward", {
   id: {
     type: DataTypes.INTEGER,
     unique: true,
@@ -22,4 +22,4 @@ const Poll = SQDB.define("poll", {
   },
 });
 
-module.exports = Poll;
+export default Reward;

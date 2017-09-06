@@ -1,5 +1,6 @@
-const Passport = require("passport");
-const UserModel = require("../../models/user");
+import Passport from "passport";
+import User from "../models/user";
+import LocalStrategy from "./passport_local_strategy";
 
 // TODO: Move passport logic out of this file
 Passport.serializeUser((user, done) => {
@@ -7,7 +8,7 @@ Passport.serializeUser((user, done) => {
 });
 
 Passport.deserializeUser((id, done) => {
-  UserModel.findOne({ where: { id } }).then((user) => {
+  User.findOne({ where: { id } }).then((user) => {
     Object.assign(user, {
       password: undefined,
       passwordSalt: undefined,
@@ -18,6 +19,6 @@ Passport.deserializeUser((id, done) => {
   }).catch(done);
 });
 
-Passport.use(require("./passport_local_strategy"));
+Passport.use(LocalStrategy);
 
-module.exports = Passport;
+export default Passport;

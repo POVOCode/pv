@@ -1,6 +1,6 @@
-const SQDB = require("../lib/sql_connection");
-const DataTypes = require("sequelize/lib/data-types");
-const hashPassword = require("../lib/util/hash_password");
+import DataTypes from "sequelize/lib/data-types";
+import SQDB from "../sql_connection";
+import hashPassword from "../util/hash_password";
 
 const User = SQDB.define("user", {
   id: {
@@ -109,4 +109,4 @@ User.hashPassword = function (cleartext) {
   });
 };
 
-module.exports = User;
+export default User;

@@ -1,10 +1,11 @@
-const PassportLocalStrategy = require("passport-local").Strategy;
-const UserModel = require("../../models/user");
-const hashPassword = require("../util/hash_password");
+import { Strategy } from "passport-local";
+
+import User from "../models/user";
+import hashPassword from "../util/hash_password";
 
 // We actually query by email now
-module.exports = new PassportLocalStrategy((username, pw, done) => {
-  UserModel.findOne({ where: { email: username } }).then((user) => {
+const strategy = new Strategy((username, pw, done) => {
+  User.findOne({ where: { email: username } }).then((user) => {
     if (!user) {
       return done(null, false, {
         message: "Invalid username or password",
@@ -32,3 +33,5 @@ module.exports = new PassportLocalStrategy((username, pw, done) => {
     });
   }).catch(done);
 });
+
+export default strategy;

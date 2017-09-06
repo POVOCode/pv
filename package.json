@@ -1,13 +1,24 @@
 {
   "name": "povo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "POVO Backend",
   "main": "index.js",
-  "repository": "git@github.com:POVOCode/povo.git",
-  "author": "Cris Mihalache <me@f3rno.com>",
-  "license": "Closed",
+  "repository": "git@github.com:POVOCode/pv.git",
+  "author": "Cris Mihalache <cris@datsusara.io>",
+  "license": "Reserved",
+  "scripts": {
+    "dev": "NODE_ENV=development babel-node ./src/exec/api.js --presets es2015,stage-2",
+    "serve": "NODE_ENV=development node ./dist/exec/api.js",
+    "build": "babel src -d dist --presets es2015,stage-2",
+    "seed": "PG_DB=pv_dev PG_USER=pv PG_PASSWORD=password PG_HOST=localhost sequelize db:seed:all",
+    "migrate": "PG_DB=pv_dev PG_USER=pv PG_PASSWORD=password PG_HOST=localhost sequelize db:migrate",
+    "undo-migrate": "PG_DB=pv_dev PG_USER=pv PG_PASSWORD=password PG_HOST=localhost sequelize db:migrate:undo"
+  },
   "dependencies": {
     "async": "^2.1.5",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",

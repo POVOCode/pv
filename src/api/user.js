@@ -1,18 +1,17 @@
-const Passport = require("passport");
-const MailchimpAPILib = require("mailchimp-v3-api");
-const Sequelize = require("sequelize");
+import Passport from "passport";
+import MailchimpAPILib from "mailchimp-v3-api";
 
-const UserModel = require("../../models/user");
-const AuthenticatedRoute = require("../http/authenticated_route");
-const hashPassword = require("../util/hash_password");
-const Logger = require("../logger");
+import User from "../models/user";
+import AuthenticatedRoute from "../http/authenticated_route";
+import hashPassword from "../util/hash_password";
+import Logger from "../logger";
 
 const MailchimpAPI = new MailchimpAPILib({
   key: "",
   debug: false,
 });
 
-module.exports = (server) => {
+export default (server) => {
   server.post("/login", Passport.authenticate("local"), (req, res) => {
     res.json({
       user: req.user,
@@ -49,10 +48,10 @@ module.exports = (server) => {
       return res.sendStatus(400);
     }
 
-    return UserModel
+    return User
       .hashPassword(password)
       .then((data) => {
-        return UserModel.create({
+        return User.create({
           username,
           email,
           password: data.password,
@@ -99,7 +98,7 @@ module.exports = (server) => {
   server.post("/user", AuthenticatedRoute, (req, res) => {
     const { username, email, password, verifyPassword, currentPassword } = req.body.user;
 
-    UserModel.findOne({ id: req.user.id }).then((user) => {
+    User.findOne({ id: req.user.id }).then((user) => {
       if (!user) {
         return res.status(404).json({
           message: "User does not exist",
@@ -141,7 +140,7 @@ module.exports = (server) => {
             const packet = { username, email };
             if (h) packet.password = h;
 
-            return UserModel.update(packet, {
+            return User.update(packet, {
               returning: true,
               plain: true,
 

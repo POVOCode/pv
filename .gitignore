@@ -7,3 +7,5 @@ logs/*
 env/*
 .suo
 .vscode/.ropeproject/objectdb
+dist/*
+!dist/.keep

@@ -1,6 +1,6 @@
-const Promise = require("bluebird");
+import Promise from "bluebird";
 
-module.exports = (err) => {
+export default (err) => {
   return (n) => {
     if (n !== 0) {
       throw err;

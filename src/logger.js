@@ -1,14 +1,15 @@
-const W = require("winston");
+import W from "winston";
+import ENV from "./env";
 
 const ConsoleOpts = {
-  level: process.env.LOG_LEVEL || "debug",
+  level: ENV.LOG_LEVEL || "debug",
   colorize: true,
   timestamp: Date.now,
   humanReadableUnhandledException: true,
   showLevel: true,
 };
 
-if (process.env.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
   ConsoleOpts.depth = 0;
   ConsoleOpts.formatter = opts =>
     `${opts.timestamp()} - ${opts.level}: ${opts.message ? opts.message : ""}`;
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 
 const transports = [new (W.transports.Console)(ConsoleOpts)];
 
-if (process.env.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
   transports.push(new (W.transports.File)({
     level: "debug",
     timestamp: Date.now,
@@ -29,7 +30,8 @@ if (process.env.NODE_ENV === "production") {
   }));
 }
 
-// TODO: Refactor and test the Logger
-module.exports = new (W.Logger)({
+const logger = new (W.Logger)({
   transports,
 });
+
+export default logger;
