@@ -4,6 +4,7 @@ import ConnectRedis from "connect-redis";
 import Express from "express";
 import CookieParser from "cookie-parser";
 import BodyParser from "body-parser";
+import CORS from "cors";
 
 import ENV from "../env";
 import Passport from "../http/passport";
@@ -41,7 +42,7 @@ apiServer.use(ExpressSession({
   saveUninitialized: false,
 }));
 
-apiServer.use(require("cors")({
+apiServer.use(CORS({
   origin: ENV.API_UI_ORIGIN,
   credentials: true,
 }));
