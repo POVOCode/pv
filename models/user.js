@@ -2,7 +2,7 @@ const SQDB = require("../lib/sql_connection");
 const DataTypes = require("sequelize/lib/data-types");
 const hashPassword = require("../lib/util/hash_password");
 
-const User = SQDB.define("User", {
+const User = SQDB.define("user", {
   id: {
     type: DataTypes.INTEGER,
     unique: true,

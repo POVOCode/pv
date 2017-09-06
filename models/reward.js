@@ -1,7 +1,7 @@
 const SQDB = require("../lib/sql_connection");
 const DataTypes = require("sequelize/lib/data-types");
 
-const Reward = SQDB.define("Reward", {
+const Reward = SQDB.define("reward", {
   id: {
     type: DataTypes.INTEGER,
     unique: true,
