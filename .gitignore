@@ -5,6 +5,7 @@ node_modules
 logs/*
 !logs/.keep
 env/*
+!env/development
 .suo
 .vscode/.ropeproject/objectdb
 dist/*

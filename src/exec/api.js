@@ -32,9 +32,11 @@ apiServer.use(CookieParser());
 apiServer.use(BodyParser.urlencoded({ extended: false }));
 apiServer.use(BodyParser.json());
 
+const redisConnectionURL = `redis://${ENV.REDIS_HOST}:${ENV.REDIS_PORT}`;
+
 apiServer.use(ExpressSession({
   store: new RedisStore({
-    url: `redis://${ENV.REDIS_HOST}:${ENV.REDIS_PORT}`,
+    url: redisConnectionURL,
   }),
 
   secret: ENV.API_SESSION_SECRET,
@@ -42,10 +44,14 @@ apiServer.use(ExpressSession({
   saveUninitialized: false,
 }));
 
+Logger.info(`Using redis for session persistence at ${redisConnectionURL}`);
+
 apiServer.use(CORS({
   origin: ENV.API_UI_ORIGIN,
   credentials: true,
 }));
+
+Logger.info(`Whitelisted ${ENV.API_UI_ORIGIN} for CORS`);
 
 apiServer.use(Passport.initialize());
 apiServer.use(Passport.session());
