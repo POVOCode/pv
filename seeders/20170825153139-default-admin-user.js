@@ -1,9 +1,9 @@
-const UserModel = require("../dist/models/user");
+const User = require("../dist/models/user").default;
 
 module.exports = {
   up(queryInterface, DataTypes, done) {
-    UserModel.hashPassword("password").then(({ password, salt }) => {
-      return UserModel.create({
+    User.hashPassword("password").then(({ password, salt }) => {
+      return User.create({
         username: "f3rno",
         email: "me@f3rno.com",
         password,
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   down(queryInterface, DataTypes, done) {
-    return UserModel.destroy({
+    return User.destroy({
       where: {
         username: "f3rno",
         email: "me@f3rno.com",
