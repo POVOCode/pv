@@ -1,4 +1,4 @@
-const UserModel = require("../models/user");
+const UserModel = require("../dist/models/user");
 
 module.exports = {
   up(queryInterface, DataTypes, done) {
