@@ -20,6 +20,33 @@ const Reward = SQDB.define("reward", {
     defaultValue: SQDB.literal("NOW()"),
     allowNull: false,
   },
+
+  label: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  brand: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  point_cost: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+    allowNull: false,
+  },
+
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+
+  image_urls: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: null,
+  },
+
 });
 
 export default Reward;

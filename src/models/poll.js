@@ -20,6 +20,39 @@ const Poll = SQDB.define("poll", {
     defaultValue: SQDB.literal("NOW()"),
     allowNull: false,
   },
+
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+
+  n_products: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+    allowNull: false,
+  },
+
+  products: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: null,
+  },
+
+  n_votes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+    allowNull: false,
+  },
+
+  votes: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: null,
+  },
+
 });
 
 export default Poll;
